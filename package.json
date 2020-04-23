@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ignacio-badiola/express-graphql.git"
+    "url": "git+https://github.com/ignacio-badiola/node-express-graphql.git"
   },
   "keywords": [
     "node",

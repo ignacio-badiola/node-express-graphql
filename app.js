@@ -17,7 +17,8 @@ app.use(bodyParser.json()); // application/json
 //     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 //     next();
 // });
-app.use('/graphql',
+app.use(
+  '/graphql',
   graphqlHttp({
     schema: graphqlSchema,
     rootValue: graphqlResolver,
