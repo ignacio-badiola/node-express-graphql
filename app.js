@@ -6,17 +6,13 @@ const graphqlHttp = require('express-graphql');
 const graphqlSchema = require('./graphql/schema');
 const graphqlResolver = require('./graphql/resolvers');
 const errorHandler = require('./routes/errorHandler');
+const cors = require('./middleware/cors');
 
 const app = express();
 
 app.use(bodyParser.json()); // application/json
+app.use(cors);
 
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
-//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//     next();
-// });
 app.use(
   '/graphql',
   graphqlHttp({
@@ -28,4 +24,9 @@ app.use(
 
 app.use(errorHandler);
 
-app.listen(4000);
+sequelize
+  // .sync({ force: true })
+  .sync()
+  .then(() => {
+    app.listen(4000);
+  }).catch(err => console.log(err));
