@@ -1,5 +1,5 @@
-# express-graphql
-Simple express graphql server
+# node-express-graphql
+Simple express graphql server with mysql db using sequelize as ORM
 
 ## Install
 
@@ -58,21 +58,56 @@ We can access to it through:
 
 ##### Example:
 ```
+# QUERY ALL USERS 
 query {
-  helloWorldQuery {
-    name,
-    price
+  allUsers {
+    name
+    email
+  }
+}
+
+# Create user
+mutation CreateUser($userData: UserInput!){
+  createUser(userInput: $userData) {
+    id
+    name
+    city
+  }
+}
+
+# VARIABLES
+{
+  "userData": {
+    "name": "Ignacio",
+    "email": "ignacio@graphql.com",
+    "password": "test",
+    "city": "Minas",
+    "phone": "818 300 4433"
   }
 }
 ```
 
 ##### Expected result:
 ```
+# QUERY ALL USERS 
 {
   "data": {
-    "helloWorldQuery": {
-      "name": "Hello world grapqhl",
-      "price": 23
+    "allUsers": [
+      {
+        "name": "Ignacio",
+        "email": "ignacio@graphql.com"
+      }
+    ]
+  }
+}
+
+# Create user
+{
+  "data": {
+    "createUser": {
+      "id": "1",
+      "name": "Ignacio",
+      "city": "Minas"
     }
   }
 }

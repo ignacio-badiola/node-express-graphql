@@ -1,0 +1,28 @@
+
+# QUERY ALL USERS 
+query {
+  allUsers {
+    name
+    email
+  }
+}
+
+# Create user
+mutation CreateUser($userData: UserInput!){
+  createUser(userInput: $userData) {
+    id
+    name
+    city
+  }
+}
+
+# QUERY VARIABLES
+{
+  "userData": {
+    "name": "Ignacio",
+    "email": "ignacio@graphql.com",
+    "password": "test",
+    "city": "Minas",
+    "phone": "818 300 4433"
+  }
+}
