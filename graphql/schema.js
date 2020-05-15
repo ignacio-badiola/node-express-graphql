@@ -1,18 +1,33 @@
 const { buildSchema } = require('graphql');
 
-// ! => means required
 module.exports = buildSchema(`
-  type helloWorldData {
+  type User {
+    id: ID!
     name: String!
-    description: String
-    price: Int!
+    email: String!
+    password: String
+    city: String
+    phone: String
   }
 
-  type CustomQuery {
-      helloWorldQuery: helloWorldData!
+  input UserInput {
+    name: String!
+    email: String!
+    password: String!
+    city: String
+    phone: String
+  }
+
+  type Query {
+    allUsers: [User]
+  }
+
+  type Mutation {
+    createUser(userInput: UserInput): User!
   }
 
   schema {
-      query: CustomQuery
+    query: Query,
+    mutation: Mutation
   }
 `);

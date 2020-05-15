@@ -14,7 +14,9 @@
   "keywords": [
     "node",
     "express",
-    "graphql"
+    "graphql",
+    "sequelize",
+    "mysql"
   ],
   "author": "Ignacio Badiola",
   "license": "ISC",
@@ -23,6 +25,7 @@
   },
   "homepage": "https://github.com/ignacio-badiola/express-graphql#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^15.0.0",
