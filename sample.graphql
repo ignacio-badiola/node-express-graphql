@@ -1,5 +1,44 @@
 
+- Open Postman and create a new POST request with the body type raw/JSON with the format:
+
+```
+{
+    query: { resolverName { fieldsToFilter } }
+}
+```
+
+
+###### Body example:
+```
+{
+	"query": "{ helloWorldQuery { name price } }"
+}
+
+```
+
+##### Expected result:
+```
+{
+    "data": {
+        "helloWorldQuery": {
+            "name": "Hello world grapqhl",
+            "price": 23
+        }
+    }
+}
+```
+
+### 2 - GraphiQL
+
+[GraphiQL](https://github.com/graphql/graphiql) is an in-browser tool for writing, validating, and testing GraphQL queries.
+
+Since graphql allows `GET` method and `graphiql` is enabled (graphiql: true)
+
+We can access to it through:
+`http://localhost:4000/graphql`
+
 # QUERY ALL USERS 
+
 query {
   allUsers {
     name
@@ -7,7 +46,20 @@ query {
   }
 }
 
+Expected result
+{
+  "data": {
+    "allUsers": [
+      {
+        "name": "Ignacio",
+        "email": "ignacio@graphql.com"
+      }
+    ]
+  }
+}
+
 # Create user
+
 mutation CreateUser($userData: UserInput!){
   createUser(userInput: $userData) {
     id
@@ -16,7 +68,28 @@ mutation CreateUser($userData: UserInput!){
   }
 }
 
-# QUERY VARIABLES
+# Update User
+
+mutation UpdateUser($id: ID!, $userData: UserInput!){
+  updateUser(userId: $id, userInput: $userData) {
+    id
+    name
+    password
+    city
+  }
+}
+
+# Delete user
+
+mutation DeleteUser($id: ID!) {
+  deleteUser(userId: $id) { 
+    name
+    email
+    city
+  }
+}
+
+# VARIABLES
 {
   "userData": {
     "name": "Ignacio",
@@ -24,5 +97,6 @@ mutation CreateUser($userData: UserInput!){
     "password": "test",
     "city": "Minas",
     "phone": "818 300 4433"
-  }
+  },
+  "id": "1"
 }

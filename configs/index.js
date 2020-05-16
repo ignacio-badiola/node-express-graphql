@@ -1,7 +1,7 @@
 module.exports = {
   db: {
     user: 'root',
-    pwd: 'mysql322',
+    pwd: 'MY-DB-PASSWORD',
     host: 'localhost',
     name: 'express-graphql-db'
   }
