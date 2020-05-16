@@ -56,17 +56,17 @@ Since graphql allows `GET` method and `graphiql` is enabled (graphiql: true)
 We can access to it through:
 `http://localhost:4000/graphql`
 
-##### Example:
+#### QUERY ALL USERS 
 ```
-# QUERY ALL USERS 
 query {
   allUsers {
     name
     email
   }
 }
-
-# Create user
+```
+#### Create user
+```
 mutation CreateUser($userData: UserInput!){
   createUser(userInput: $userData) {
     id
@@ -74,8 +74,29 @@ mutation CreateUser($userData: UserInput!){
     city
   }
 }
-
-# VARIABLES
+```
+#### Update User
+```
+mutation UpdateUser($id: ID!, $userData: UserInput!){
+  updateUser(userId: $id, userInput: $userData) {
+    id
+    name
+    password
+    city
+  }
+}
+```
+#### Delete user
+```
+mutation DeleteUser($id: ID!) {
+  deleteUser(userId: $id) { 
+    name
+    email
+    city
+  }
+}
+```
+#### VARIABLES
 {
   "userData": {
     "name": "Ignacio",
@@ -83,7 +104,8 @@ mutation CreateUser($userData: UserInput!){
     "password": "test",
     "city": "Minas",
     "phone": "818 300 4433"
-  }
+  },
+  "id": "1"
 }
 ```
 
